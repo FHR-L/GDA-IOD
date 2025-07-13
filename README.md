@@ -38,4 +38,12 @@ CUDA_VISIBLE_DEVICES=0 ./tools/dist_train.sh configs/faster-rcnn/10.py 1 --work-
 #train last 10 cats incrementally
 CUDA_VISIBLE_DEVICES=0 ./tools/dist_train.sh configs/_base_/datasets/voc/voc10_10.py 1
 ```
-
+### Citation
+```
+@inproceedings{gda_iod,
+ author = {W. Luo and S. Zhang and D. Cheng and Y. Xing and G. Liang and P. Wang and Y. Zhang},
+ title  = {Gradient Decomposition and Alignment for Incremental Object Detection},
+ year   = {2025},
+ booktitle = {ICCV}
+}
+```
