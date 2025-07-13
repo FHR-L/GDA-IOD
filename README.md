@@ -18,24 +18,24 @@ mim install mmcv==2.0.0
 # cd GDA-COLD
 pip install -v -e .
 ```
-
+### Dataset Prepare
 You can run pascol_voc_split.py to split the Pascal VOC dataset as you want,
-
 ```python
-# to generate instances_train2017_sel_last_40_cats.json
+# modify in pascol_voc_split.py
+dataset_root = r'data root to VOC'
+# run
 python pascol_voc_split.py
-
 ```
-
-
 ### Train
 ```python
 # assume that you are under the root directory of this project,
 # and you have activated your virtual environment if needed.
-# and with COCO dataset in '/dataset/coco/'
+# and add dataset root to 'configs/_base_/datasets/voc/voc10_10.py' and 'configs/_base_/datasets/voc/voc10.py'
 
-# train first 40 cats
-CUDA_VISIBLE_DEVICES=0 ./tools/dist_train.sh configs/gfl_increment/gfl_r50_fpn_1x_coco_first_40_cats.py 2 --work-dir=../ERD_results/gfl_increment/gfl_r50_fpn_1x_coco_first_40_cats
-#train last 40 cats incrementally
-CUDA_VISIBLE_DEVICES=0 ./tools/dist_train.sh configs/gfl_increment/gfl_r50_fpn_1x_coco_first_40_incre_last_40_cats.py 2 --work-dir=../ERD_results/gfl_increment/gfl_r50_fpn_1x_coco_first_40_incre_last_40_cats
+# train first 10 cats
+CUDA_VISIBLE_DEVICES=0 ./tools/dist_train.sh configs/faster-rcnn/10.py 1 --work-dirs ./work_dir/base/voc/10
+
+#train last 10 cats incrementally
+CUDA_VISIBLE_DEVICES=0 ./tools/dist_train.sh configs/_base_/datasets/voc/voc10_10.py 1
 ```
+
